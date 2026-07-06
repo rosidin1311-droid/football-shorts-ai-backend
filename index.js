@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/generate", async (req, res) => {
+app.post("/generate", (req, res) => {
   const { url } = req.body;
 
   if (!url) {
@@ -24,31 +24,14 @@ app.post("/generate", async (req, res) => {
     });
   }
 
-  console.log("Received:", url);
+  console.log("Received URL:", url);
 
-  return res.json({
+  res.json({
     success: true,
     status: "processing",
-    video: null,
     receivedUrl: url
   });
 });
-
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
-});          return res.json({
-            status: "done",
-            video: "output/final.mp4"
-          });
-        }
-      );
-    });
-  } catch (e) {
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
